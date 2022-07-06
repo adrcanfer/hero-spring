@@ -7,7 +7,7 @@ import com.adrcanfer.hero.model.Hero;
 
 public interface HeroService {
 	
-	List<Hero> getHeros(String filter);
+	List<Hero> getHeros(String name);
 	
 	Hero getHeroById(Long id) throws CustomException;
 	

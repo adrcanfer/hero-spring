@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.adrcanfer.hero.exception.CustomException;
 import com.adrcanfer.hero.model.Hero;
@@ -26,8 +27,8 @@ public class HeroController {
 	private HeroService heroService;
 	
 	@GetMapping()
-	public ResponseEntity<List<Hero>> getHeros() {
-		List<Hero> res = heroService.getHeros(null); 
+	public ResponseEntity<List<Hero>> getHeros(@RequestParam(required = false) String name) {
+		List<Hero> res = heroService.getHeros(name); 
 		return new ResponseEntity<List<Hero>>(res, HttpStatus.OK);
 	}
 	

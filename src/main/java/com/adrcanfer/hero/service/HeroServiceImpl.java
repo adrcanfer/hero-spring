@@ -17,11 +17,13 @@ public class HeroServiceImpl implements HeroService{
 	private HeroRepository heroRepository;
 	
 	@Override
-	public List<Hero> getHeros(String filter) {
+	public List<Hero> getHeros(String name) {
 		List<Hero> res = null;
 		
-		if(null == filter || filter.isBlank()) {
+		if(null == name || name.isBlank()) {
 			res = heroRepository.findAll();
+		} else {
+			res = heroRepository.findByNameContainsIgnoreCase(name);
 		}
 
 		return res;
