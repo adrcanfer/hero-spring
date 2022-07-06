@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.adrcanfer.hero.exception.CustomException;
@@ -46,7 +47,7 @@ public class HeroServiceImpl implements HeroService{
 		
 		if(!res.isPresent()) {
 			LOGGER.info("Hero not found");
-			throw new CustomException("No se ha encontrado al heroe con id: " + id, 404);
+			throw new CustomException("No se ha encontrado al heroe con id: " + id, HttpStatus.NOT_FOUND);
 		}
 
 		
@@ -89,13 +90,13 @@ public class HeroServiceImpl implements HeroService{
 	private void validateHero(Hero hero, boolean isNew) throws CustomException {
 		if(hero.getName().isBlank()) {
 			LOGGER.error("Invalid hero name");
-			throw new CustomException("El campo nombre no puede estar vacío", 422);
+			throw new CustomException("El campo nombre no puede estar vacío", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
 		if(!isNew) {
 			if(null == hero.getId()) {
 				LOGGER.error("Invalid hero id");
-				throw new CustomException("El campo id no puede estar vacío", 422);				
+				throw new CustomException("El campo id no puede estar vacío", HttpStatus.UNPROCESSABLE_ENTITY);				
 			}
 		} else {
 			hero.setId(null);
