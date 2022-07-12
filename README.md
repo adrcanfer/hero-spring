@@ -3,11 +3,16 @@
 ### Introducción
 Este proyecto es una api RESTful haciendo del Framework de Spring Boot.
 En este proyecto se ha hecho uso de las siguientes tecnologías:
-
-
-
+  - Spring Security
+  - Spring Data
+  - Spring AOP
+  - Spring Caché
+  - H2
+  - OpenAPI
+  - Docker
 
 ## Docker
+
 
 ## Calidad
 ![Coverage](.github/badges/jacoco.svg)
