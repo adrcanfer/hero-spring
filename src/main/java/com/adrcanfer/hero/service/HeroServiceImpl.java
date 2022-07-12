@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import com.adrcanfer.hero.model.Hero;
 import com.adrcanfer.hero.repository.HeroRepository;
 
 @Service
+@CacheConfig(cacheNames = {"heros"})
 public class HeroServiceImpl implements HeroService{
 
 	@Autowired
@@ -40,9 +45,10 @@ public class HeroServiceImpl implements HeroService{
 	}
 
 	@Override
+	@Cacheable
 	public Hero getHeroById(Long id) throws CustomException {
 		LOGGER.info("INI getHero with id: {}", id);
-		
+		sleep();
 		Optional<Hero> res = heroRepository.findById(id);
 		
 		if(!res.isPresent()) {
@@ -56,6 +62,7 @@ public class HeroServiceImpl implements HeroService{
 	}
 
 	@Override
+	@CachePut(key = "T(Long).valueOf(#hero.getId())")
 	public Hero postHero(Hero hero) throws CustomException {
 		LOGGER.info("INI postHero with body: {}", hero);
 		
@@ -67,6 +74,7 @@ public class HeroServiceImpl implements HeroService{
 	}
 
 	@Override
+	@CachePut
 	public Hero putHero(Hero hero) throws CustomException {
 		LOGGER.info("INI putHero with body: {}", hero);
 		
@@ -78,6 +86,7 @@ public class HeroServiceImpl implements HeroService{
 	}
 
 	@Override
+	@CacheEvict
 	public void deleteHeroById(Long id) throws CustomException {
 		LOGGER.info("END deleteHero with id", id);
 
@@ -100,6 +109,15 @@ public class HeroServiceImpl implements HeroService{
 			}
 		} else {
 			hero.setId(null);
+		}
+	}
+	
+	private void sleep() {
+		try {
+			long time = 3000L;
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			throw new IllegalStateException(e);
 		}
 	}
 

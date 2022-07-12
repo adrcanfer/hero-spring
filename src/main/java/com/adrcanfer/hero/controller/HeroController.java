@@ -111,5 +111,4 @@ public class HeroController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
-
 }
