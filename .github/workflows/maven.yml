@@ -1,7 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: Hero CI/CD
 
 on:
   push:
@@ -22,5 +19,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Build
       run: mvn -B package --file pom.xml
+    - name: Test
+      run: mvn -B test --file pom.xml
