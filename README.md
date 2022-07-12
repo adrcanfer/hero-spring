@@ -1,6 +1,10 @@
-# Heroes: Aplicación de prueba con SpringBoot
+# Heroes: Aplicación de prueba con Spring Boot
 
-## Contenido de la aplicación
+### Introducción
+Este proyecto es una api RESTful haciendo del Framework de Spring Boot.
+En este proyecto se ha hecho uso de las siguientes tecnologías:
+
+
 
 
 ## Docker
