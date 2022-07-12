@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adrcanfer.hero.annotation.TimeLogger;
 import com.adrcanfer.hero.exception.CustomException;
 import com.adrcanfer.hero.exception.dto.ErrorResponse;
 import com.adrcanfer.hero.model.Hero;
@@ -42,6 +43,7 @@ public class HeroController {
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Se devuelven los heroes") })
 	@PreAuthorize("hasRole('READ')")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@TimeLogger
 	public ResponseEntity<List<Hero>> getHeros(
 			@Parameter(description = "Nombre del heroe para filtrar") @RequestParam(required = false) String name) {
 		LOGGER.info("INI getHeros with name: {}", name);
@@ -58,6 +60,7 @@ public class HeroController {
 			})
 	@PreAuthorize("hasRole('READ')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@TimeLogger
 	public ResponseEntity<Hero> getHeroById(@Parameter(description = "Identificador del heroe") @PathVariable Long id) throws CustomException {
 		LOGGER.info("INI getHero with id: {}", id);
 		Hero res = heroService.getHeroById(id);
@@ -73,6 +76,7 @@ public class HeroController {
 		})
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@PreAuthorize("hasRole('WRITE')")
+	@TimeLogger
 	public ResponseEntity<Hero> postHero(@Parameter(description = "Contenido del heroe a persistir") @RequestBody Hero body) throws CustomException {
 		LOGGER.info("INI postHero with body: {}", body);
 		Hero res = heroService.postHero(body); 
@@ -88,6 +92,7 @@ public class HeroController {
 		})
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	@PreAuthorize("hasRole('WRITE')")
+	@TimeLogger
 	public ResponseEntity<Hero> putHero(@Parameter(description = "Contenido del heroe a persistir") @RequestBody Hero body) throws CustomException {
 		LOGGER.info("END putHero with body: {}", body);
 		Hero res = heroService.putHero(body); 
@@ -103,6 +108,7 @@ public class HeroController {
 		})
 	@RequestMapping(value ="/{id}",  method = RequestMethod.DELETE, produces = "application/json")
 	@PreAuthorize("hasRole('WRITE')")
+	@TimeLogger
 	public ResponseEntity<Void> deleteHeroById(@Parameter(description = "Identificador del heroe") @PathVariable Long id) throws CustomException {
 		LOGGER.info("END deleteHero with id", id);
 		heroService.deleteHeroById(id);
