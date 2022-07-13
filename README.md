@@ -3,6 +3,7 @@
 ### Introducción
 Este proyecto es una api RESTful haciendo del Framework de Spring Boot.
 En este proyecto se ha hecho uso de las siguientes tecnologías:
+  - Spring Web
   - Spring Security
   - Spring Data
   - Spring AOP
@@ -10,9 +11,40 @@ En este proyecto se ha hecho uso de las siguientes tecnologías:
   - H2
   - OpenAPI
   - Docker
+  - GithubActions
 
-## Docker
+### Servicios expuesto
+Esta API expone 5 servicios que nos permiten operar con los Heroes almacenados. Estos servicios nos permiten:
+  - Obtener el listado completo de heroes y filtrar por nombre.
+  - Obtener el detalle de un heroe
+  - Crear un heroe
+  - Modificar un heroe
+  - Eliminar un heroe
+  - ¿¿EXPORTAR??
 
+### Spring Web
+Se ha utilizado Spring Web para la implementación de los servicios REST.
+
+### Spring Security
+Esta dependencia ha sito utilizada para securizar la aplicación. Se hace implementado una autorización básica (Basic Auth) y para ello se han definido los siguientes 3 usuarios y contraseñas:
+
+  - admin/admin: Con permisos de escritura y lectura.
+  - read/read: Con permisos de lectura.
+  - write/write: Con permisos de escritura.
+
+### Spring Data
+Ha sido utilizada para operar con la BBDD. Con esta dependencia hemos mapeado los registros de la BBDD a objetos Java y viceversa. Además, haciendo uso de Hibernate operamos con la BBDD.
+
+### Docker
+Se ha incluido un fichero Dockerfile. 
+Para generar la imagen se debe lanzar el siguiente comando proprocionando la ruta al jar como argumento:
+```sh
+docker build -t adrcanfer/hero --build-arg JAR_FILE=./hero-0.0.1-SNAPSHOT.jar .
+```
+Para lanzar un nuevo contenedor con esta imagen es necesario lanzar el siguiente comando:
+```sh
+docker run -p 8080:8080 adrcanfer/hero
+```
 
 ## Calidad
 ![Coverage](.github/badges/jacoco.svg)
