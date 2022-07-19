@@ -65,6 +65,3 @@ En la carpeta ./k8s se encuentran los siguientes ficheros:
 
 ### Github Actions
 Se ha implementado una acción en Github para que cuando se realice un commit en el repositorio, se ejecuten los tests unitarios.
-
-### Calidad
-![Coverage](.github/badges/jacoco.svg)
