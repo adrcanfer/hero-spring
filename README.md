@@ -45,7 +45,7 @@ Usada para cachear a los heroes. Se ha introducido un delay en el método que ob
 Es la BBDD en memoria que se ha usado para resolver este problema.
 
 ### Open API
-Se ha usado para la documentación de las APIs expuestas. Cuando la aplicación se encuentre levantada, se puede acceder a la documentación a través de la siguiente URL: (http://localhost:8080/swagger-ui/index.html)
+Se ha usado para la documentación de las APIs expuestas. Cuando la aplicación se encuentre levantada, se puede acceder a la documentación a través de la siguiente URL: http://localhost:8080/swagger-ui/index.html
 
 ### Docker
 Se ha incluido un fichero Dockerfile. 
