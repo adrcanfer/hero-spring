@@ -13,6 +13,7 @@ En este proyecto se ha hecho uso de las siguientes tecnologías:
   - Docker
   - Kubernetes
   - GithubActions
+  - Heroku
 
 ### Servicios expuesto
 Esta API expone 5 servicios que nos permiten operar con los Heroes almacenados. Estos servicios nos permiten:
@@ -66,5 +67,6 @@ En la carpeta ./k8s se encuentran los siguientes ficheros:
 ### Github Actions
 Se ha implementado una acción en Github para que cuando se realice un commit en el repositorio, se ejecuten los tests unitarios.
 
-### Calidad
-![Coverage](.github/badges/jacoco.svg)
+### Heroku
+La aplicación se encuentra desplegada en Heroku y es accesible a través de la siguiente URL: https://adrcanfer-hero.herokuapp.com
+Se puede acceder a la documentación de la API a través de la siguiente URL: https://adrcanfer-hero.herokuapp.com/swagger-ui/index.html
